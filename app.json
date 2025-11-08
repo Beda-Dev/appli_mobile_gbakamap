@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "gbakamap",
+    "name": "GbakaMap",
     "slug": "gbakamap",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -8,8 +8,24 @@
     "scheme": "gbakamap",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/images/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "ci.gbakamap.app",
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "GbakaMap a besoin de votre localisation pour vous aider à trouver les arrêts de transport à proximité.",
+        "NSLocationAlwaysAndWhenInUseUsageDescription": "GbakaMap a besoin de votre localisation pour vous fournir des informations en temps réel sur les transports."
+      },
+      "config": {
+        "googleMapsApiKey": "YOUR_GOOGLE_MAPS_API_KEY_IOS"
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -18,15 +34,33 @@
         "backgroundImage": "./assets/images/android-icon-background.png",
         "monochromeImage": "./assets/images/android-icon-monochrome.png"
       },
+      "package": "ci.gbakamap.app",
+      "permissions": [
+        "ACCESS_COARSE_LOCATION",
+        "ACCESS_FINE_LOCATION",
+        "INTERNET"
+      ],
+      "config": {
+        "googleMaps": {
+          "apiKey": "YOUR_GOOGLE_MAPS_API_KEY_ANDROID"
+        }
+      },
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false
     },
     "web": {
       "output": "static",
-      "favicon": "./assets/images/favicon.png"
+      "favicon": "./assets/images/favicon.png",
+      "bundler": "metro"
     },
     "plugins": [
       "expo-router",
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "GbakaMap a besoin de votre localisation pour vous aider à trouver les arrêts de transport à proximité."
+        }
+      ],
       [
         "expo-splash-screen",
         {
